@@ -70,4 +70,55 @@ router.get('/create-checkout-session', async (req, res) => {
   }
 });
 
+/* GET cart checkout */
+router.post('/create-cart-session', async (req, res) => {
+  const cart = req.body.cart;
+
+  if (!cart || typeof cart !== 'object') {
+    return res.status(400).json({ error: 'Cart is invalid or missing' });
+  }
+
+  try {
+    const line_items = Object.entries(cart).map(([key, quantity]) => {
+      const product = products[key];
+      if (!product) throw new Error(`Invalid product key: ${key}`);
+
+      return {
+        price_data: {
+          currency: 'cad',
+          product_data: {
+            name: product.name,
+            description: product.description,
+          },
+          unit_amount: parseInt(product.price, 10),
+        },
+        quantity,
+      };
+    });
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      mode: 'payment',
+      line_items,
+      success_url: `${req.protocol}://${req.get('host')}/success`,
+      cancel_url: `${req.protocol}://${req.get('host')}/cancel`,
+    });
+
+    res.json({ url: session.url });
+  } catch (err) {
+    console.error('Stripe error (cart):', err.message);
+    res.status(500).json({ error: 'Stripe error: ' + err.message });
+  }
+});
+
+/* GET success page. */
+router.get('/success', (req, res) => {
+  res.render('success', { title: 'Payment Successful' });
+});
+
+/* GET cancel page. */
+router.get('/cancel', (req, res) => {
+  res.render('cancel', { title: 'Payment Cancelled' });
+});
+
 module.exports = router;
