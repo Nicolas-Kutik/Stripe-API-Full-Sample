@@ -6,9 +6,9 @@
   <div class="row justify-content-center">
     <div class="col-md-4 mb-4">
       <div class="card shadow-sm">
-        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Demo Product 1">
+        <img src="../public/images/stock-shirt.jpg" class="card-img-top" alt="Demo Product 1">
         <div class="card-body">
-          <h5 class="card-title">Demo T-Shirt</h5>
+          <h5 class="card-title">T-Shirt</h5>
           <p class="card-text">High quality cotton t-shirt. Perfect for testing Stripe payments.</p>
           <p class="fw-bold">$19.99</p>
           <button class="btn btn-primary checkout-btn" data-item="tshirt"><i class="fa-solid fa-cart-shopping"></i> Buy Now</button>
@@ -17,9 +17,9 @@
     </div>
     <div class="col-md-4 mb-4">
       <div class="card shadow-sm">
-        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Demo Product 2">
+        <img src="../public/images/stock-mug.jpg" class="card-img-top" alt="Demo Product 2">
         <div class="card-body">
-          <h5 class="card-title">Demo Mug</h5>
+          <h5 class="card-title">Mug</h5>
           <p class="card-text">Ceramic mug for your favorite beverage. Try Stripe checkout with this item!</p>
           <p class="fw-bold">$9.99</p>
           <button class="btn btn-primary checkout-btn" data-item="mug"><i class="fa-solid fa-cart-shopping"></i> Buy Now</button>
@@ -28,9 +28,9 @@
     </div>
     <div class="col-md-4 mb-4">
       <div class="card shadow-sm">
-        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Demo Product 3">
+        <img src="../public/images/stock-sticker.jpg" class="card-img-top" alt="Demo Product 3">
         <div class="card-body">
-          <h5 class="card-title">Demo Sticker Pack</h5>
+          <h5 class="card-title">Sticker Pack</h5>
           <p class="card-text">Fun stickers for your laptop or notebook. Great for Stripe payment testing.</p>
           <p class="fw-bold">$4.99</p>
           <button class="btn btn-primary checkout-btn" data-item="stickers"><i class="fa-solid fa-cart-shopping"></i> Buy Now</button>
@@ -39,16 +39,11 @@
     </div>
   </div>
 </div>
-<script>
-  document.querySelectorAll('.checkout-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      fetch('/checkout', {
-        method: 'POST',
-      })
-      .then(res => res.json())
-      .then(data => {
-        window.location.href = data.url;
-      });
+ <script>
+  document.querySelectorAll('.checkout-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const item = button.getAttribute('data-item');
+      window.location.href = `/create-checkout-session?item=${item}`;
     });
   });
 </script>
