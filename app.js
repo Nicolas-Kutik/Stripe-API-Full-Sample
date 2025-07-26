@@ -1,6 +1,6 @@
 require('dotenv').config();
 var createError = require('http-errors');
-const stripe = require('stripe');(process.env.STRIPE_SECRET_KEY);
+const stripe = require('stripe');(process.env.STRIPE_SECERT_KEY);
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
