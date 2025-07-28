@@ -3,16 +3,16 @@ var router = express.Router();
 const stripe = require('stripe')(process.env.STRIPE_SECERT_KEY);
 
 const products = {
-  tshirt: { name: 'T-Shirt', price: '1999', image: '../public/images/stock-shirt.jpg', description: 'High quality cotton t-shirt.' },
-  mug: { name: 'Mug', price: '999', image: '../public/images/stock-mug.jpg', description: 'Ceramic mug for your favorite beverage.' },
-  stickers: { name: 'Sticker Pack', price: '499', image: '../public/images/stock-stickers.jpg', description: 'Fun stickers for your laptop.' },
-  notebook: { name: 'Notebook', price: '799', image: '../public/images/stock-notebook.jpg', description: 'A5 lined notebook.' },
-  pen: { name: 'Pen', price: '299', image: '../public/images/stock-pen.jpg', description: 'Smooth writing pen.' },
-  hat: { name: 'Baseball Cap', price: '1499', image: '../public/images/stock-hat.jpg', description: 'Classic cotton cap.' },
-  bottle: { name: 'Water Bottle', price: '1299', image: '../public/images/stock-bottle.jpg', description: 'Reusable water bottle.' },
-  bag: { name: 'Tote Bag', price: '899', image: '../public/images/stock-bag.jpg', description: 'Eco-friendly tote bag.' },
-  hoodie: { name: 'Hoodie', price: '2999', image: '../public/images/stock-hoodie.jpg', description: 'Warm and comfy hoodie.' },
-  mousepad: { name: 'Mouse Pad', price: '599', image: '../public/images/stock-mousepad.jpg', description: 'Smooth surface mouse pad.' },
+  tshirt: { name: 'T-Shirt', price: '1999', image: '/images/stock-shirt.jpg', description: 'High quality cotton t-shirt.' },
+  mug: { name: 'Mug', price: '999', image: '/images/stock-mug.jpg', description: 'Ceramic mug for your favorite beverage.' },
+  stickers: { name: 'Sticker Pack', price: '499', image: '/images/stock-stickers.jpg', description: 'Fun stickers for your laptop.' },
+  notebook: { name: 'Notebook', price: '799', image: '/images/stock-notebook.jpg', description: 'A5 lined notebook.' },
+  pen: { name: 'Pen', price: '299', image: '/images/stock-pen.jpg', description: 'Smooth writing pen.' },
+  hat: { name: 'Baseball Cap', price: '1499', image: '/images/stock-hat.jpg', description: 'Classic cotton cap.' },
+  bottle: { name: 'Water Bottle', price: '1299', image: '/images/stock-bottle.jpg', description: 'Reusable water bottle.' },
+  bag: { name: 'Tote Bag', price: '899', image: '/images/stock-bag.jpg', description: 'Eco-friendly tote bag.' },
+  hoodie: { name: 'Hoodie', price: '2999', image: '/images/stock-hoodie.jpg', description: 'Warm and comfy hoodie.' },
+  mousepad: { name: 'Mouse Pad', price: '599', image: '/images/stock-mousepad.jpg', description: 'Smooth surface mouse pad.' },
 };
 
 /* GET home page. */
